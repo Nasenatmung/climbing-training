@@ -76,4 +76,4 @@ fout.write('============= Upper Body =============\n')
 selectexercises(olength,onum,foin,fout)
 
 print "'Genuegend Kraft ist ein Zustand, den es nicht gibt.' (Wolfgang Guellich)"
-fout.write("'Genuegend Kraft ist ein Zustand, den es nicht gibt.' (Wolfgang Guellich)")
+fout.write("\n'Genuegend Kraft ist ein Zustand, den es nicht gibt.' (Wolfgang Guellich)")
