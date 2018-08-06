@@ -59,10 +59,6 @@ fkin.seek(0)
 frin.seek(0)
 foin.seek(0)
 
-print klength
-print rlength
-print olength
-
 if knum == klength:
   sys.exit("ERROR: Number of requested lower exercises equals or is larger than the number of exercises in file!")
 if rnum == rlength:
