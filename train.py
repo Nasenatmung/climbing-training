@@ -21,7 +21,6 @@ def selectexercises(length,num,fin,fout):
           x=(random.randint(1,length))
           for l in range(0,len(liste)):
              if x == liste[l]:
-               print 'test'
                k = k - 1
           liste.append(x)
           k = k + 1
@@ -77,3 +76,4 @@ fout.write('============= Upper Body =============\n')
 selectexercises(olength,onum,foin,fout)
 
 print "'Genuegend Kraft ist ein Zustand, den es nicht gibt.' (Wolfgang Guellich)"
+fout.write("'Genuegend Kraft ist ein Zustand, den es nicht gibt.' (Wolfgang Guellich)")
