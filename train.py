@@ -33,47 +33,80 @@ def selectexercises(length,num,fin,fout):
        fin.seek(0)
     del liste[:]
 
-knum=input("Request Number of Lower Body Exercises\n")
-rnum=input("Request Number of Middle Body Exercises\n")
-onum=input("Request Number of Upper Body Exercises\n")
+# choose type of training
+traintype = raw_input("Do you want to make climbing specific or balance training?\n")
+climbing = False
+balance = False
+if traintype == "1" or traintype == "climbing specific" or traintype == "specific" or traintype == "climbing":
+  climbing = True
+if traintype == "2" or traintype == "balance training" or traintype == "balance":
+  balance = True
 
-fkin=open('lower.inp','r')
-frin=open('middle.inp','r')
-foin=open('upper.inp','r')
+# section for climbing specific training
+if climbing:
+  print("\n= Great, you chose to make climbing specific training! =\n")
 
-klength=0
-rlength=0
-olength=0
+  cnum=input("Request Number of Climbing Specific Exercises\n")
+  fcin=open('upper.inp','r')
+  clength=0
+  # evaluate number of exercises in each file
+  for line in fcin:
+     clength = clength + 1
+  # rewind files
+  fcin.seek(0)
+  if cnum >= clength:
+    print clength
+    sys.exit("ERROR: Number of requested climbing specific exercises equals or is larger than the number of exercises in file!")
+  fout=open('workoutplan','w')
+  fout.write('=========== climbing specific ========\n')
+  selectexercises(clength,cnum,fcin,fout)
 
-# evaluate number of exercises in each file
-for line in fkin:
-   klength = klength + 1
-for line in frin:
-   rlength = rlength + 1
-for line in foin:
-   olength = olength + 1
+# section for balance training
+elif balance:
+  print("\n= Great, you chose to make balance training! =\n")
 
-# rewind files
-fkin.seek(0)
-frin.seek(0)
-foin.seek(0)
+  knum=input("Request Number of Lower Body Exercises\n")
+  rnum=input("Request Number of Middle Body Exercises\n")
+  onum=input("Request Number of Upper Body Exercises\n")
+  fkin=open('lower.inp','r')
+  frin=open('middle.inp','r')
+  foin=open('upper.inp','r')
+  klength=0
+  rlength=0
+  olength=0
 
-if knum == klength:
-  sys.exit("ERROR: Number of requested lower exercises equals or is larger than the number of exercises in file!")
-if rnum == rlength:
-  sys.exit("ERROR: Number of requested middle body exercises equals or is larger than the number of exercises in file!")
-if onum == olength:
-  sys.exit("ERROR: Number of requested upper body exercises equals or is larger than the number of exercises in file!")
+  # evaluate number of exercises in each file
+  for line in fkin:
+     klength = klength + 1
+  for line in frin:
+     rlength = rlength + 1
+  for line in foin:
+     olength = olength + 1
 
-fout=open('workoutplan','w')
+  # rewind files
+  fkin.seek(0)
+  frin.seek(0)
+  foin.seek(0)
 
-# knee exercises
-fout.write('============= Lower body =============\n')
-selectexercises(klength,knum,fkin,fout)
-fout.write('============= Middle body ============\n')
-selectexercises(rlength,rnum,frin,fout)
-fout.write('============= Upper Body =============\n')
-selectexercises(olength,onum,foin,fout)
+  if knum == klength:
+    sys.exit("ERROR: Number of requested lower exercises equals or is larger than the number of exercises in file!")
+  if rnum == rlength:
+    sys.exit("ERROR: Number of requested middle body exercises equals or is larger than the number of exercises in file!")
+  if onum == olength:
+    sys.exit("ERROR: Number of requested upper body exercises equals or is larger than the number of exercises in file!")
+
+  fout=open('workoutplan','w')
+
+  # knee exercises
+  fout.write('============= Lower body =============\n')
+  selectexercises(klength,knum,fkin,fout)
+  fout.write('============= Middle body ============\n')
+  selectexercises(rlength,rnum,frin,fout)
+  fout.write('============= Upper Body =============\n')
+  selectexercises(olength,onum,foin,fout)
+
+else:
+  sys.exit("ERORR: Please choose what kind of training you want!")
 
 print "'Genuegend Kraft ist ein Zustand, den es nicht gibt.' (Wolfgang Guellich)"
 fout.write("\n'Genuegend Kraft ist ein Zustand, den es nicht gibt.' (Wolfgang Guellich)")
