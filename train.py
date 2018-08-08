@@ -47,19 +47,38 @@ if climbing:
   print("\n= Great, you chose to make climbing specific training! =\n")
 
   cnum=input("Request Number of Climbing Specific Exercises\n")
+  fnum=input("Request Number of Finger Strength Exercises\n") 
   fcin=open('upper.inp','r')
+  ffin=open('finger.inp','r')
   clength=0
+  flength=0
+
   # evaluate number of exercises in each file
   for line in fcin:
      clength = clength + 1
+  for line in ffin:
+     flength = flength + 1
+
   # rewind files
   fcin.seek(0)
+  ffin.seek(0)
+
   if cnum >= clength:
     print clength
     sys.exit("ERROR: Number of requested climbing specific exercises equals or is larger than the number of exercises in file!")
+  if fnum >= flength:
+    print flength
+    sys.exit("ERROR: Number of requested finger strength exercises equals or is larger than the number of exercises in file!")
+
+  # select exercises
   fout=open('workoutplan','w')
-  fout.write('=========== climbing specific ========\n')
+  fout.write('============ Finger Strength =========\n')
+  selectexercises(flength,fnum,ffin,fout)
+  fout.write('=========== Climbing Specific ========\n')
   selectexercises(clength,cnum,fcin,fout)
+
+  ffin.close()
+  fcin.close()
 
 # section for balance training
 elif balance:
@@ -89,24 +108,31 @@ elif balance:
   foin.seek(0)
 
   if knum == klength:
+    print klength
     sys.exit("ERROR: Number of requested lower exercises equals or is larger than the number of exercises in file!")
   if rnum == rlength:
+    print rlength
     sys.exit("ERROR: Number of requested middle body exercises equals or is larger than the number of exercises in file!")
   if onum == olength:
+    print olength
     sys.exit("ERROR: Number of requested upper body exercises equals or is larger than the number of exercises in file!")
 
+  # select exercises
   fout=open('workoutplan','w')
-
-  # knee exercises
-  fout.write('============= Lower body =============\n')
+  fout.write('============= Lower Body =============\n')
   selectexercises(klength,knum,fkin,fout)
-  fout.write('============= Middle body ============\n')
+  fout.write('============= Middle Body ============\n')
   selectexercises(rlength,rnum,frin,fout)
   fout.write('============= Upper Body =============\n')
   selectexercises(olength,onum,foin,fout)
+
+  fkin.close()
+  frin.close()
+  foin.close()
 
 else:
   sys.exit("ERORR: Please choose what kind of training you want!")
 
 print "'Genuegend Kraft ist ein Zustand, den es nicht gibt.' (Wolfgang Guellich)"
 fout.write("\n'Genuegend Kraft ist ein Zustand, den es nicht gibt.' (Wolfgang Guellich)")
+fout.close()
