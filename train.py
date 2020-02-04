@@ -34,7 +34,7 @@ def selectexercises(length,num,fin,fout):
     del liste[:]
 
 # choose type of training
-traintype = raw_input("Do you want to make climbing specific or balance training?\n")
+traintype = input("Do you want to make climbing specific or balance training?\n")
 climbing = False
 balance = False
 if traintype == "1" or traintype == "climbing specific" or traintype == "specific" or traintype == "climbing":
@@ -46,8 +46,10 @@ if traintype == "2" or traintype == "balance training" or traintype == "balance"
 if climbing:
   print("\n= Great, you chose to make climbing specific training! =\n")
 
-  cnum=input("Request Number of Climbing Specific Exercises\n")
-  fnum=input("Request Number of Finger Strength Exercises\n") 
+  inpcnum=input("Request Number of Climbing Specific Exercises\n")
+  inpfnum=input("Request Number of Finger Strength Exercises\n") 
+  cnum=int(inpcnum)
+  fnum=int(inpfnum)
   fcin=open('upper.inp','r')
   ffin=open('finger.inp','r')
   clength=0
@@ -64,10 +66,10 @@ if climbing:
   ffin.seek(0)
 
   if cnum >= clength:
-    print clength
+    print (clength)
     sys.exit("ERROR: Number of requested climbing specific exercises equals or is larger than the number of exercises in file!")
   if fnum >= flength:
-    print flength
+    print (flength)
     sys.exit("ERROR: Number of requested finger strength exercises equals or is larger than the number of exercises in file!")
 
   # select exercises
@@ -84,9 +86,12 @@ if climbing:
 elif balance:
   print("\n= Great, you chose to make balance training! =\n")
 
-  knum=input("Request Number of Lower Body Exercises\n")
-  rnum=input("Request Number of Middle Body Exercises\n")
-  onum=input("Request Number of Upper Body Exercises\n")
+  inpknum=input("Request Number of Lower Body Exercises\n")
+  inprnum=input("Request Number of Middle Body Exercises\n")
+  inponum=input("Request Number of Upper Body Exercises\n")
+  knum=int(inpknum)
+  rnum=int(inprnum)
+  onum=int(inponum)
   fkin=open('lower.inp','r')
   frin=open('middle.inp','r')
   foin=open('upper.inp','r')
@@ -107,14 +112,14 @@ elif balance:
   frin.seek(0)
   foin.seek(0)
 
-  if knum == klength:
-    print klength
+  if knum >= klength:
+    print (klength)
     sys.exit("ERROR: Number of requested lower exercises equals or is larger than the number of exercises in file!")
-  if rnum == rlength:
-    print rlength
+  if rnum >= rlength:
+    print (rlength)
     sys.exit("ERROR: Number of requested middle body exercises equals or is larger than the number of exercises in file!")
-  if onum == olength:
-    print olength
+  if onum >= olength:
+    print (olength)
     sys.exit("ERROR: Number of requested upper body exercises equals or is larger than the number of exercises in file!")
 
   # select exercises
@@ -133,6 +138,6 @@ elif balance:
 else:
   sys.exit("ERORR: Please choose what kind of training you want!")
 
-print "'Genuegend Kraft ist ein Zustand, den es nicht gibt.' (Wolfgang Guellich)"
+print ("'Genuegend Kraft ist ein Zustand, den es nicht gibt.' (Wolfgang Guellich)")
 fout.write("\n'Genuegend Kraft ist ein Zustand, den es nicht gibt.' (Wolfgang Guellich)")
 fout.close()
