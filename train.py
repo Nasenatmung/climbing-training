@@ -1,5 +1,7 @@
 # coding=UTF-8
 
+# All exercises are chosen from input files. You can easily adjust them to your needs.
+
 import random
 import sys
 
